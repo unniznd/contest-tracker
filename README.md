@@ -72,7 +72,8 @@ yarn run dev
 ```
 frontend/
 ├── components/
-│   ├── ContestCard.tsx     # Contest display component
+│   ├── UpcomingContestCard.tsx     # Contest display component
+|   ├── PastContestCard.tsx     # Contest display component
 │   ├── Navbar.tsx         # Navigation bar with theme toggle
 │   └── ThemeToggle.tsx    # Light/dark mode toggle button
 ├── lib/
