@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for TLE Assignment",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon App.js",
+    "start": "node App.js"
+  },
+  "author": "Aanand S",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "axios": "^1.8.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
