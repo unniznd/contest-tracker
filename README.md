@@ -20,6 +20,9 @@ A Next.js application with TypeScript and Material-UI that displays upcoming and
   - Consistent link styling
   - TypeScript type safety
 
+## Production Application
+[Live Website](https://cpcontests.vercel.app/)
+
 ## Prerequisites
 
 - Node.js (v16 or higher recommended)
