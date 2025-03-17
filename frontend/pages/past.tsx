@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import Navbar from '@/components/Navbar';
-import ContestCard from '../components/ContestCard';
+import PastContestCard from '@/components/PastContestCard';
 import { Contest } from '@/types/contest';
 
 interface RawContest {
@@ -135,7 +135,7 @@ export default function PastContests() {
           <Grid2 container spacing={2}>
             {contests.map((contest, index) => (
               <Grid2 >
-                <ContestCard contest={contest} />
+                <PastContestCard contest={contest} />
               </Grid2>
             ))}
           </Grid2>

@@ -7,6 +7,7 @@ A Next.js application with TypeScript and Material-UI that displays upcoming and
 - **Upcoming Contests Page**
   - Displays upcoming contests from multiple platforms
   - Filter by platform (All, CodeChef, LeetCode, CodeForces)
+  - Bookmark upcoming contests in the page
   - Responsive grid layout
 
 - **Past Contests Page**

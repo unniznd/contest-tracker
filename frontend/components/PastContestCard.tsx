@@ -1,12 +1,12 @@
-// components/ContestCard.tsx
+// components/PastContestCard.tsx
 import { Card, CardContent, Typography } from '@mui/material';
 import { Contest } from '../types/contest';
 
-interface ContestCardProps {
+interface PastContestCardProps {
   contest: Contest;
 }
 
-export default function ContestCard({ contest }: ContestCardProps) {  
+export default function PastContestCard({ contest }: PastContestCardProps) {  
   return (
     <Card sx={{ 
       width: 345,
@@ -21,8 +21,8 @@ export default function ContestCard({ contest }: ContestCardProps) {
             target="_blank" 
             rel="noopener noreferrer"
             style={{ 
-              color: 'inherit', // Use the parent typography color
-              textDecoration: 'none', // Remove underline
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             {contest.title}
@@ -32,10 +32,10 @@ export default function ContestCard({ contest }: ContestCardProps) {
           Platform: {contest.platform}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Starts: {contest.startTime.toDateString()}
+          Started: {contest.startTime.toDateString()}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Ends: {contest.endTime.toDateString()}
+          Ended: {contest.endTime.toDateString()}
         </Typography>
         {contest.solution && (
           <Typography variant="body2" color="text.secondary">
@@ -44,8 +44,8 @@ export default function ContestCard({ contest }: ContestCardProps) {
               target="_blank" 
               rel="noopener noreferrer"
               style={{ 
-                color: 'inherit', // Use the parent typography color
-                textDecoration: 'none', // Remove underline
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
               Solution Video

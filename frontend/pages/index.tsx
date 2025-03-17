@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import Navbar from '@/components/Navbar';
-import ContestCard from '../components/ContestCard';
+import UpcomingContestCard from '@/components/UpcomingContestCard';
 import { Contest } from '../types/contest';
 
 interface RawContest {
@@ -24,7 +24,17 @@ export default function Home() {
   const [platformFilter, setPlatformFilter] = useState<string>('all');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [bookmarkedContests, setBookmarkedContests] = useState<string[]>([]);
 
+  // Load bookmarked contests from localStorage on mount
+  useEffect(() => {
+    const storedBookmarks = localStorage.getItem('bookmarkedContests');
+    if (storedBookmarks) {
+      setBookmarkedContests(JSON.parse(storedBookmarks));
+    }
+  }, []);
+
+  // Fetch contests
   useEffect(() => {
     const fetchContests = async () => {
       setLoading(true);
@@ -57,6 +67,18 @@ export default function Home() {
     fetchContests();
   }, [platformFilter]);
 
+  // Toggle bookmark status for a contest
+  const handleBookmark = (contestTitle: string) => {
+    let updatedBookmarks: string[];
+    if (bookmarkedContests.includes(contestTitle)) {
+      updatedBookmarks = bookmarkedContests.filter(title => title !== contestTitle);
+    } else {
+      updatedBookmarks = [...bookmarkedContests, contestTitle];
+    }
+    setBookmarkedContests(updatedBookmarks);
+    localStorage.setItem('bookmarkedContests', JSON.stringify(updatedBookmarks));
+  };
+
   return (
     <>
       <Navbar />
@@ -78,36 +100,36 @@ export default function Home() {
           </Select>
         </FormControl>
 
-        {/* Loading state */}
         {loading && (
           <Container sx={{ textAlign: 'center', mt: 4 }}>
-          <CircularProgress />
-          <Typography variant="h6" sx={{ mt: 2 }}>
-            Loading upcoming contests...
-          </Typography>
-        </Container>
+            <CircularProgress />
+            <Typography variant="h6" sx={{ mt: 2 }}>
+              Loading upcoming contests...
+            </Typography>
+          </Container>
         )}
 
-        {/* Error state */}
         {error && (
           <Typography color="error" textAlign="center">
             {error}
           </Typography>
         )}
 
-        {/* No contests available */}
         {!loading && !error && contests.length === 0 && (
           <Typography textAlign="center">
             No contests available for the selected platform.
           </Typography>
         )}
 
-        {/* Contests List */}
         {!loading && !error && contests.length > 0 && (
           <Grid2 container spacing={2}>
             {contests.map((contest, index) => (
-              <Grid2  key={index}>
-                <ContestCard contest={contest} />
+              <Grid2 key={index}>
+                <UpcomingContestCard 
+                  contest={contest}
+                  isBookmarked={bookmarkedContests.includes(contest.title)}
+                  onBookmark={handleBookmark}
+                />
               </Grid2>
             ))}
           </Grid2>
